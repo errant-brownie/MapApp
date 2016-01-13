@@ -23,8 +23,8 @@ renderMap.directive('renderMap', function(){
             },
             zoomControl: true,
             zoomControlOptions: {
-              position: google.maps.ControlPosition.RIGHT_CORNER
               style: google.maps.ZoomControlStyle.SMALL,
+              position: google.maps.ControlPosition.LEFT_BOTTOM,
             },
             streetViewControl: false,
           scrollwheel: true,
