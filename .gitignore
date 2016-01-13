@@ -14,3 +14,5 @@ config.js
 Dockerfile
 docker-compose.yml
 
+.DS_Store
+
