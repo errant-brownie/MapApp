@@ -75,16 +75,12 @@ input{
 }
 
 .search {
-  position: absolute;
-  top:75px;
-  left:0px;
+  position: relative;
+  width: 30em;
+  margin-left: auto;
+  margin-right: auto;
   z-index: 7;
-}
-
-button {
-  position: absolute;
-  left: 175px;
-  top: 0px;
+  top: 10px;
 }
 
 .form {
@@ -93,9 +89,15 @@ button {
 }
 .form-control {
   display: inline-block !important;
+  width: 30em;
+  height: 19px;
 }
+
 .search button {
-  display:inline-block;
+  position: relative;
+  display: inline-block;
+  height: 26px;
+  top: -1px;
 }
 
 
@@ -120,6 +122,14 @@ nav ul li a {
   color: #32CD32;
 }
 
-
+.searchbar {
+  background: #6F6F6F;
+  z-index: 100;
+  width: 110%;
+  height: 45px;
+  position: absolute;
+  left: -8px;
+  top: 0;
+}
 
 
