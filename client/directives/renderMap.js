@@ -24,7 +24,9 @@ renderMap.directive('renderMap', function(){
             zoomControl: true,
             zoomControlOptions: {
               position: google.maps.ControlPosition.RIGHT_CORNER
+              style: google.maps.ZoomControlStyle.SMALL,
             },
+            streetViewControl: false,
           scrollwheel: true,
           styles: styles
       };
