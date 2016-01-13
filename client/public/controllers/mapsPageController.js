@@ -27,7 +27,7 @@ app.controller('mapsPageController', ['$scope', '$http', 'httpService', '$sce', 
     ////////////////////////////////ASSUMPTIONS + DRIVERS FOR HANDLING DATA STREAM///////////////////////////////////////////
     
     //establish map drivers
-    var maxNumOfTweetsAllowedOnMap = 1000;
+    var maxNumOfTweetsAllowedOnMap = 10000;
     var heatmap = new google.maps.visualization.HeatmapLayer({
       radius: 15
     });
@@ -77,6 +77,8 @@ app.controller('mapsPageController', ['$scope', '$http', 'httpService', '$sce', 
       // };
 
       socket.on('tweet-stream', function (data) {
+
+        console.log($scope.allTweets.data.length)
 
         if($scope.allTweets.data.length > maxNumOfTweetsAllowedOnMap){
           var pinToRemove = $scope.allTweets.data.shift();
@@ -131,8 +133,8 @@ app.controller('mapsPageController', ['$scope', '$http', 'httpService', '$sce', 
           markerInfoWindow.open(map, tweetMarker);
          });
         tweetMarker.addListener('mouseout', function () {
-        markerInfoWindow.close();
-         });
+          markerInfoWindow.close();
+        });
         // //set tweet on map...
         tweetMarker.setMap(window.map, tweetLocation, tweetContent);
 

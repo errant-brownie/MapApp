@@ -44,13 +44,3 @@ module.exports = {
     passport.use(new TwitterStrategy(strategyData, twitterCallback));
   }
 };
-
-
-
-
-
-
-
-
-
-

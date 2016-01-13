@@ -35,7 +35,7 @@ app.service('httpService', ['$http', function ($http) {
 
   //login functionality
   this.login = function () {
-    $http.get('/login')
+    return $http.get('/login')
       .then(function (success) {
         return success;
       }, function (error) {
