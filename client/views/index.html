@@ -6,41 +6,32 @@
   </head>
 
   <body>
-    <!-- <nav ng-controller='signupController'>
-      <ul class='navigation'>
-        <li><a href="logout">sign out</a></li>  
-      </ul>
-    </nav> -->
 
-    <!--ui view will be inserted below-->
-    <div ng-controller="mapsPageController">
-      <div class="searchbar">
-        <span>
-          <form class='search' ng-submit="submitSearch()">
-            <input class='form-control' type="text" ng-model="searchField" placeholder="search"></input>
-            <button type="submit">search</button>
-          </form>
-        </span>
-        <!-- We haven't gotten this working yet. clicking this button will send a favorite input to the database
-         <form ng-submit="favoriteSubmit()">
-          <input type="text" ng-model="favoriteField" placeholder="save to favorites"></input>
-          <button type="submit">send</button>
-        </form> -->
-      </div>
-      <div id="mapContainer">
+      <div id="mapContainer" ng-controller="mapsPageController">
         <render-map id="map"></render-map>
-        <!-- <div class='realTime-Tweets'>
-          <div id="recentRelevantTweetsContainer">
-            <ul id="listOfRelevantTweets" >
-              <div class='eachTweet'ng-repeat="tweet in relevantTweets track by $index">
-               <li class="relevantTweets"><b>{{tweet.handle}}: </b>{{tweet.text}}</li>
-              </div>
-            </ul>
-          </div> 
-        </div> -->
       </div>
-   </div>
-    <!--render map tag linking to custom directive -->
+      
+      <div class="searchbar">
+        <form class='search' ng-submit="submitSearch()">
+          <input class='form-control' type="text" ng-model="searchField" placeholder="search"></input>
+          <button type="submit">search</button>
+        </form>
+      </div>
+      
+      <div class="overlay">
+        <!-- <div ng-controller="leftDiv" class="leftDiv"> -->
+        <div class="leftDiv sidebar">
+        LEFT
+        </div>
+
+        <!-- <div ng-controller="searchController" class="searchbar"> -->
+
+        <!-- <div ng-controller="rightDiv" class="rightDiv"> -->
+        <div class="rightDiv sidebar">
+        RIGHT
+        </div>
+      </div>
+
   </body>
 
   <script src="bower_components/angular/angular.js"></script>
