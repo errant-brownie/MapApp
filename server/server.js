@@ -26,7 +26,7 @@ var db_pass = process.env.DB_PASSWORD || KEYS.password;
 var stream = null;
 var twitterTopic ;
 // ** NEED TO IMPLEMENT Setup server to listen to MongoLab URI delegating to local db 
-var mapDB = process.env.MONGOLAB_URI || 'mongodb://' + key + ':' + db_pass + '@ds039095.mongolab.com:39095/users-tweets';
+var mapDB = process.env.MONGOLAB_URI || 'mongodb://localhost:27017/users-tweets';
 mongoose.connect(mapDB);
 
 // Set Up Authorization 
