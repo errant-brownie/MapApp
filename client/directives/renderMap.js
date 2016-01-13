@@ -19,12 +19,14 @@ renderMap.directive('renderMap', function(){
           mapTypeControl: true,
             mapTypeControlOptions: {
               style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
-              position: google.maps.ControlPosition.TOP_CENTER
+              position: google.maps.ControlPosition.BOTTOM_CENTER
             },
             zoomControl: true,
             zoomControlOptions: {
-              position: google.maps.ControlPosition.LEFT_CENTER
+              style: google.maps.ZoomControlStyle.SMALL,
+              position: google.maps.ControlPosition.LEFT_BOTTOM,
             },
+            streetViewControl: false,
           scrollwheel: true,
           styles: styles
       };
