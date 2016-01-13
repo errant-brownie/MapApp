@@ -85,6 +85,7 @@ io.sockets.on('connection', function(socket) {
             if (twitterTopic === undefined || topicExists === true) {
               var scrubbedTweetObject = {
                 name: tweetObject.user['name'],
+                hashTags: tweetObject.entities['hashtags'],
                 handle: tweetObject.user['screen_name'],
                 verified: tweetObject.user['verified'],
                 createdAt: tweetObject.user['created_at'],
@@ -101,6 +102,8 @@ io.sockets.on('connection', function(socket) {
                 retweet_count: tweetObject['retweet_count'],
                 favorite_count: tweetObject['favorite_count']
               };
+
+              console.log(tweetObject.entities.hashtags)
 
               // emit to client and send back tweet object
               socket.broadcast.emit("tweet-stream", scrubbedTweetObject);

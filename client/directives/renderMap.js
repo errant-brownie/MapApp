@@ -19,7 +19,7 @@ renderMap.directive('renderMap', function(){
           mapTypeControl: true,
             mapTypeControlOptions: {
               style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
-              position: google.maps.ControlPosition.TOP_CENTER
+              position: google.maps.ControlPosition.BOTTOM_CENTER
             },
             zoomControl: true,
             zoomControlOptions: {

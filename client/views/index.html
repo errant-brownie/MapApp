@@ -2,36 +2,34 @@
 <html ng-app="app">
   <head>
     <link rel="stylesheet" href="client/assets/stylesheets/styles.css"></link>
-    <link rel='stylesheet' href="../../bower_components/bootstrap/dist/css/bootstrap.min.css" />
     <link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
   </head>
 
   <body>
-    <nav ng-controller='signupController'>
+    <!-- <nav ng-controller='signupController'>
       <ul class='navigation'>
-        <li><a href="#">home</a></li>
-        <li><a href="#">map</a></li>  
         <li><a href="logout">sign out</a></li>  
       </ul>
-    </nav>
+    </nav> -->
 
     <!--ui view will be inserted below-->
     <div ng-controller="mapsPageController">
       <div class="searchbar">
-        <form class='search' ng-submit="submitSearch()">
-          <input class='form-control' type="text" ng-model="searchField" placeholder="search"></input>
-          <button type="submit">search</button>
-        </form>
+        <span>
+          <form class='search' ng-submit="submitSearch()">
+            <input class='form-control' type="text" ng-model="searchField" placeholder="search"></input>
+            <button type="submit">search</button>
+          </form>
+        </span>
         <!-- We haven't gotten this working yet. clicking this button will send a favorite input to the database
-           <form ng-submit="favoriteSubmit()">
+         <form ng-submit="favoriteSubmit()">
           <input type="text" ng-model="favoriteField" placeholder="save to favorites"></input>
           <button type="submit">send</button>
         </form> -->
       </div>
-      <div ui-view></div>
       <div id="mapContainer">
         <render-map id="map"></render-map>
-        <div class='realTime-Tweets'>
+        <!-- <div class='realTime-Tweets'>
           <div id="recentRelevantTweetsContainer">
             <ul id="listOfRelevantTweets" >
               <div class='eachTweet'ng-repeat="tweet in relevantTweets track by $index">
@@ -39,7 +37,7 @@
               </div>
             </ul>
           </div> 
-        </div>
+        </div> -->
       </div>
    </div>
     <!--render map tag linking to custom directive -->
