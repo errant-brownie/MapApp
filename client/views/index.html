@@ -6,32 +6,25 @@
   </head>
 
   <body>
-
-      <div id="mapContainer" ng-controller="mapsPageController">
-        <render-map id="map"></render-map>
-      </div>
+    <div id="mapContainer" ng-controller="mapsPageController">
+      <render-map id="map"></render-map>
+    </div>
       
-      <div class="searchbar">
-        <form class='search' ng-submit="submitSearch()">
-          <input class='form-control' type="text" ng-model="searchField" placeholder="search"></input>
-          <button type="submit">search</button>
-        </form>
-      </div>
-      
-      <div class="overlay">
-        <!-- <div ng-controller="leftDiv" class="leftDiv"> -->
-        <div class="leftDiv sidebar">
-        LEFT
-        </div>
+    <div class="searchbar">
+      <!-- <div ng-controller="searchController" class="searchbar"> -->
+      <form class='search' ng-submit="submitSearch()">
+        <input class='form-control' type="text" ng-model="searchField" placeholder="search"></input>
+        <button type="submit">search</button>
+      </form>
+    </div>
+    
+    <div class="overlay">
+      <!-- <div ng-controller="leftDiv" class="leftDiv"> -->
+      <div class="leftDiv sidebar">LEFT</div>
 
-        <!-- <div ng-controller="searchController" class="searchbar"> -->
-
-        <!-- <div ng-controller="rightDiv" class="rightDiv"> -->
-        <div class="rightDiv sidebar">
-        RIGHT
-        </div>
-      </div>
-
+      <!-- <div ng-controller="rightDiv" class="rightDiv"> -->
+      <div class="rightDiv sidebar">RIGHT</div>
+    </div>
   </body>
 
   <script src="bower_components/angular/angular.js"></script>
@@ -45,5 +38,4 @@
   <script src="client/public/controllers/mapsPageController.js"></script>
   <script src="https://maps.googleapis.com/maps/api/js?libraries=visualization"></script>
   <script src="node_modules/socket.io-client/socket.io.js"></script>
-
 </html> 
