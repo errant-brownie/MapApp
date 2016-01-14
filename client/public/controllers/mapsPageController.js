@@ -1,4 +1,11 @@
-app.controller('mapsPageController', ['$scope', '$http', 'httpService', '$sce', "$timeout", function ($scope, $http, httpService, $sce, $timeout) {
+app.controller('mapsPageController', [
+  'tweetMessageService',
+  '$scope', 
+  '$http', 
+  'httpService', 
+  '$sce', 
+  '$timeout', 
+  function (tweetMessageService, $scope, $http, httpService, $sce, $timeout) {
 
   //////////////////////////////////////////MAPS PAGE CONTROLLER DRIVER//////////////////////////////////////////////
 

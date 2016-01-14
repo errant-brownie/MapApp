@@ -4,6 +4,7 @@ var app = angular.module('app', [
   'app.tweets',
   'app.filter',
   'app.search',
+  'app.tweetMessageService',
   'ngAnimate', 
   'ui.router',
 ])

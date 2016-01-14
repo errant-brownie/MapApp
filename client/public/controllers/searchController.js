@@ -1,4 +1,6 @@
 //searchController.js
 angular.module('app.search', [])
 
-.controller('searchController', function(){});
+.controller('searchController', function(){
+  return {};
+});
