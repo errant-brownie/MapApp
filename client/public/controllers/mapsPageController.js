@@ -83,8 +83,8 @@ app.controller('mapsPageController', [
       //   heatmap.setMap(window.map);
       // };
 
+      var count = 0;
       socket.on('tweet-stream', function (data) {
-
         // console.log($scope.allTweets.data.length)
 
         if($scope.allTweets.data.length > maxNumOfTweetsAllowedOnMap){
@@ -119,8 +119,8 @@ app.controller('mapsPageController', [
 
         ///////////////////////////////////PLACE ALL INCOMING TWEETS ON MAP///////////////////////////////////////
 
-        var tweetLocation = new google.maps.LatLng(data["coordinates"]["coordinates"][1], data["coordinates"]["coordinates"][0]);
-        
+        var tweetLocation = new google.maps.LatLng(data["coordinates"][1], data["coordinates"][0]);
+                
         heatmap.data.push(tweetLocation);
         
         var tweetMarker = new google.maps.Marker({
@@ -131,17 +131,19 @@ app.controller('mapsPageController', [
 
         //determine content added to info window on each marker  
         var tweetContent = '<div>' + data['name'] + ": " + data['tweetText'] + '</div>';
-        var markerInfoWindow = new google.maps.InfoWindow({
-           content: tweetContent
-         });
+        // var markerInfoWindow = new google.maps.InfoWindow({
+        //    content: tweetContent
+        //  });
 
+        tweetMarker.addListener('click', tweetMessageService.showMessageCallback(tweetContent));
         //set up listeners for each tweetMarker...
-        tweetMarker.addListener('mouseover', function () {
-          markerInfoWindow.open(map, tweetMarker);
-         });
-        tweetMarker.addListener('mouseout', function () {
-          markerInfoWindow.close();
-        });
+        // tweetMarker.addListener('mouseover', function () {
+        //   markerInfoWindow.open(map, tweetMarker);
+        //  });
+
+        // tweetMarker.addListener('mouseout', function () {
+        //   markerInfoWindow.close();
+        // });
         // //set tweet on map...
         tweetMarker.setMap(window.map, tweetLocation, tweetContent);
 

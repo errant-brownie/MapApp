@@ -1,7 +1,7 @@
 // Setup server dependencies
 var express = require('express');
 var path = require('path');
-var favicon = require('favicon');
+// var favicon = require('favicon');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var passport = require("passport");
@@ -9,7 +9,7 @@ var session = require('express-session');
 // var TwitterStrategy =  require("passport-twitter").Strategy;
 var routes = require('./routes/routes');
 // var TwitterAPI = require('./controllers/twitterApiController.js');
-var socketTweet = require('./service/tweetSocket');
+var tweetSocket = require('./service/tweetSocket');
 
 // **Important password and keys **
 if (!process.env.CONSUMER_KEY) {
@@ -22,7 +22,6 @@ var key = process.env.DB_USER || KEYS.user;
 var db_pass = process.env.DB_PASSWORD || KEYS.password;
 
 //init socketStream to null
-var stream = null;
 var twitterTopic ;
 // ** NEED TO IMPLEMENT Setup server to listen to MongoLab URI delegating to local db 
 var mapDB = process.env.MONGOLAB_URI || 'mongodb://localhost:27017/users-tweets';
@@ -52,11 +51,10 @@ app.use(express.static(path.join(__dirname, '../')));
 /* Routes */
 app.use('/', routes);
 
-//socket.io code below
-
 var server = app.listen(port);  
 console.log('App listening on ' + port);
 
-socketTweet.io();
+//socket.io code below
+tweetSocket.connect(server);
 
 module.exports = app;
