@@ -22,6 +22,5 @@ var updateFilter = function (hastag, threshold) {
 };
 
 module.exports = {
-  filter: filter,
   updateFilter: updateFilter
 };

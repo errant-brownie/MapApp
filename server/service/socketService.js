@@ -1,6 +1,6 @@
 var textSearch = require('../utils/textSearch');
 var TwitterAPI = require('../controllers/twitterApiController');
-var filterService = require('./filter');
+var filterService = require('../requestHandler/filter');
 var socketio = require('socket.io');
 var hashtagsController = require('../controllers/hashtagsController');
 var hashtag = null;
@@ -52,7 +52,9 @@ var connect = function (server) {
 
               // //creating an object with useful properties
               // if (twitterTopic === undefined || topicExists === true || hashTagExists === true) {
-                var splicedProfileImage = tweetObject.users['profile_image_url_https'].slice(0, -4).concat('_mini.png');
+
+                // TODO: images
+                //var splicedProfileImage = tweetObject.users['profile_image_url_https'].slice(0, -4).concat('_mini.png');
 
                 var scrubbedTweetObject = {
                   name: tweetObject.user['name'],
@@ -68,7 +70,7 @@ var connect = function (server) {
                   place: tweetObject['place'],
                   tweetText: tweetObject['text'],
                   tweetTime: tweetObject['created_at'],
-                  profileImage: splicedProfileImage,
+                  //profileImage: splicedProfileImage,
                   // retweet_count: tweetObject['retweet_count'],
                   // favorite_count: tweetObject['favorite_count']
                 };
@@ -78,7 +80,7 @@ var connect = function (server) {
                   hashtags: tweetObject.entities['hashtags']
                 };
 
-                hashtagsController.addHashtag(databaseTweet);
+                hashtagsController.addHashtag(databaseTweet)
                   .then(function () {
                     if (count % 997 === 0) {
                       return filterService.updateFilter()
