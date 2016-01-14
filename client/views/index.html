@@ -10,20 +10,14 @@
       <render-map id="map"></render-map>
     </div>
       
-    <div class="searchbar">
-      <!-- <div ng-controller="searchController" class="searchbar"> -->
-      <form class='search' ng-submit="submitSearch()">
-        <input class='form-control' type="text" ng-model="searchField" placeholder="search"></input>
-        <button type="submit">search</button>
-      </form>
-    </div>
+    <div class="searchbar" ui-view="searchbar"></div>
     
     <div class="overlay">
       <!-- <div ng-controller="leftDiv" class="leftDiv"> -->
-      <div class="leftDiv sidebar">LEFT</div>
+      <div class="leftDiv sidebar" ui-view="leftDiv">LEFT</div>
 
       <!-- <div ng-controller="rightDiv" class="rightDiv"> -->
-      <div class="rightDiv sidebar">RIGHT</div>
+      <div class="rightDiv sidebar" ui-view="rightDiv">RIGHT</div>
     </div>
   </body>
 
@@ -33,9 +27,12 @@
   <script src="/bower_components/angular-animate/angular-animate.js"></script>
   <script src="client/app.js"></script>
   <script src="client/public/controllers/signup.js"></script>
+  <script src="client/public/controllers/mapsPageController.js"></script>
   <script src="client/directives/renderMap.js"></script>
   <script src="client/public/services/httpService.js"></script>
-  <script src="client/public/controllers/mapsPageController.js"></script>
+  <script src="client/public/controllers/tweetsController.js"></script>
+  <script src="client/public/controllers/filterController.js"></script>
+  <script src="client/public/controllers/searchController.js"></script>
   <script src="https://maps.googleapis.com/maps/api/js?libraries=visualization"></script>
   <script src="node_modules/socket.io-client/socket.io.js"></script>
 </html> 
