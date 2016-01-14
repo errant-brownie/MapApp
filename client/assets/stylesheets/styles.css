@@ -10,6 +10,19 @@ body, html{
   padding: 0px;
 }
 
+.toggle{
+  align-self:center;
+  width: 10px;
+  border-radius: 0px 8px 8px 0px;
+  font-size: 0.5em;
+  background-color: #f9f9f9;
+  height:50%;
+  color: gray;
+}
+.toggle:focus{
+  outline:none;
+}
+
 #map {
   z-index: 5;
   position: absolute;
@@ -75,18 +88,21 @@ input[type="text"], textarea, select {
   z-index: 100;
   height: 50%;
   padding:10px;
-  background-color: #FFFFFF;
+
   border-radius: 5px;
 }
 
 .leftDiv {
-  align-self: center;
-  width: 16em;
+  display: flex; /*so child can be flex;*/
+  flex-direction:row-reverse;
+  align-self: center; 
   /*height: 26%;*/
 
   height: -webkit-fit-content;  
   margin-top: 47px;
   margin-left: 10px;
+
+
 }
 
 .rightDiv {
@@ -98,13 +114,18 @@ input[type="text"], textarea, select {
 }
 
 .tweets {
-  align-self: top;
-  width: 16em;
+  align-self: flex-start;
+  width: 14em;
   /*height: 26%;*/
 
   /*height: -webkit-fit-content;  */
   /*margin-top: 47px;*/
   margin-left: 10px;
+  background-color: #f9f9f9;
+  min-height: 100px;
+  padding: 3px;
+  box-shadow: -2px 2px 3px gray;
+
 }
 
 .user-tweet {
@@ -112,4 +133,20 @@ input[type="text"], textarea, select {
   margin-bottom: 3px;
 }
 
+hr {
+  border: 0;
+  clear:both;
+  display:block;
+  width: 90%;               
+  background-color:LightSkyBlue;
+  height: 1px;
+  margin: 7px auto;
+}
 
+.tweet-user {
+  font-family: sans-serif;
+}
+
+.tweet-text {
+  font-family: sans-serif;
+}
