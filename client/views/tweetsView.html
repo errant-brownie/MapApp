@@ -1,7 +1,6 @@
-  <div class="tweets">
-   TWEETS GO HERE
-   {{test}}
+  <div class="tweets ng-hide" ng-show="data.show">
+   {{data.message}}
   </div>
-  <div>
+  <button ng-click="hideMessage()">
    button for collapsing goes here
-  </div>
+  </button>
