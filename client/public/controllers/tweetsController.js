@@ -14,8 +14,8 @@ angular.module('app.tweets', [])
       $scope.$apply();
     };
 
-    $scope.hideMessage = function () {
-      $scope.data.show = false;
+    $scope.toggleMessage = function () {
+      $scope.data.show = !$scope.data.show;
     };
 
     tweetMessageService.addListener(showMessage);
