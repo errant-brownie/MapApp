@@ -8,6 +8,7 @@
   <body>
     <div id="mapContainer" ng-controller="mapsPageController">
       <render-map id="map"></render-map>
+      <div>{{test}}</div>
     </div>
       
     <div class="searchbar" ui-view="searchbar"></div>
@@ -15,6 +16,7 @@
     <div class="overlay">
       <!-- <div ng-controller="leftDiv" class="leftDiv"> -->
       <div class="leftDiv sidebar" ui-view="leftDiv">LEFT</div>
+
 
       <!-- <div ng-controller="rightDiv" class="rightDiv"> -->
       <div class="rightDiv sidebar" ui-view="rightDiv">RIGHT</div>
@@ -30,6 +32,7 @@
   <script src="client/public/controllers/mapsPageController.js"></script>
   <script src="client/directives/renderMap.js"></script>
   <script src="client/public/services/httpService.js"></script>
+  <script src="client/public/services/tweetMessageService.js"></script>
   <script src="client/public/controllers/tweetsController.js"></script>
   <script src="client/public/controllers/filterController.js"></script>
   <script src="client/public/controllers/searchController.js"></script>
