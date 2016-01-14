@@ -29,17 +29,14 @@ body, html{
   justify-content: space-between;
 }
 
-.leftDiv {
-  align-self: center;
-  width: 10em;
-  height: 50%;
-}
 
 .searchbar {
   z-index: 100;
-  position: absolute;
+  height: 38px;
   top: 0;
+  position: absolute;
   width: 100%;
+  /*border-bottom: 2px solid rgba(176, 182, 183, 0.4);*/
 
   /* manage the blocks inside this container*/
   display:flex;
@@ -47,17 +44,72 @@ body, html{
   justify-content: center;
 
   /* style stuff */
-  background-color: #6F6F6F;
-  opacity: .75;
+  background: -webkit-linear-gradient(#1d5982, #003d66);
+  opacity: .925;
 }
 
-.rightDiv {
+.search {
   align-self: center;
-  width: 10em;
-  height: 50%;
+  height: 22px;
+}
+
+.search-button {
+  height: 21px;
+  width: 45px;
+  border-radius: 2px;
+  background: -webkit-linear-gradient(#CFDBE4, #9EACB5);
+}
+
+.form-control {
+  height: 17px;
+  width: 20em;
+  padding: 2px;
+  border-radius: 2px;
+}
+
+input[type="text"], textarea, select { 
+  outline: none;
 }
 
 .sidebar {
   z-index: 100;
+  height: 50%;
+  padding:10px;
   background-color: #FFFFFF;
+  border-radius: 5px;
 }
+
+.leftDiv {
+  align-self: center;
+  width: 16em;
+  /*height: 26%;*/
+
+  height: -webkit-fit-content;  
+  margin-top: 47px;
+  margin-left: 10px;
+}
+
+.rightDiv {
+  align-self: center;
+  width: 14em;
+  /*height: 50%;*/
+  margin-right: 10px;
+  margin-bottom: 50px;
+}
+
+.tweets {
+  align-self: top;
+  width: 16em;
+  /*height: 26%;*/
+
+  /*height: -webkit-fit-content;  */
+  /*margin-top: 47px;*/
+  margin-left: 10px;
+}
+
+.user-tweet {
+  margin-left: 3px;
+  margin-bottom: 3px;
+}
+
+
