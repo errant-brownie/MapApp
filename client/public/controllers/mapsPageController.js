@@ -78,7 +78,7 @@ app.controller('mapsPageController', ['$scope', '$http', 'httpService', '$sce', 
 
       socket.on('tweet-stream', function (data) {
 
-        console.log($scope.allTweets.data.length)
+        // console.log($scope.allTweets.data.length)
 
         if($scope.allTweets.data.length > maxNumOfTweetsAllowedOnMap){
           var pinToRemove = $scope.allTweets.data.shift();
