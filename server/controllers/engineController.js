@@ -1,0 +1,101 @@
+var model = require('../db/dbModel.js');
+var Promise = require('bluebird');
+
+/*
+  The heart of the project...
+  The order of operations is as follows:
+  1) Find all users associated with item
+  2) Find all items associated with users
+  3) Add all items to the data object and increment counts associated with items
+  4) Calculate resulting strength of association (count / maxCount)
+  5) Return array of objects consisting of {id: item.id, name: item.name, strength: (calculated strength) }
+
+  inputs:
+   array of:
+     { id: xx, .... }
+
+  outputs:
+   array of:
+     { item: { associated item object }, strength: 0.000 - 1.000, count: 123 }
+*/
+
+var getRelatedHashtags = function (hashtagList) {
+  // max count for calculating relational strength
+  var maxCount = 0;
+  var hashtagCounts = {};
+
+  // translate hashtagList into object for fast referencing
+  // var itemObj = {};
+  var hashtagIds = [];
+  for (var i = 0; i < hashtagList.length; i++) {
+    // itemObj[hashtagList[i].id] = 1;
+    hashtagIds.push(hashtagList[i].id);
+  };
+
+  // find all occurances of hashtagIds in item table
+  return model.Hashtag.findAll({ 
+    where: {
+      id: hashtagIds
+    },
+    include: [model.User]
+  })
+  // expected input to be array of { hashtags } to the .then block
+  .then(function (hashtags) {
+    return hashtags.reduce(function (accum, record) {
+      record.Users.forEach(function(hashtag) {
+        accum.push(hashtag.id);
+      })
+      return accum;
+    }, []);
+  })
+  .each(function(user) {
+    return model.User.findAll({
+      where: {
+        id: user
+      },
+      include: [ model.Hashtag ]
+    })
+    .then(function (hashtagUsersRecords) {
+      // find each item that this member 'likes'
+      return hashtagUsersRecords.forEach(function (recordsArr) {
+        recordsArr.Hashtags.forEach(function (record) {
+          // deletes unnecessary data from item object
+          delete record.dataValues.hashtag_user;
+          // this check is to make sure that none of the items in the itemList exist in the return array
+          // if (itemObj[record.id] === undefined) {
+            if (!!hashtagCounts[record.id]) {
+              hashtagCounts[record.id].count++;
+            } else {
+              hashtagCounts[record.id] = {};
+              hashtagCounts[record.id].hashtag = record.dataValues;
+              hashtagCounts[record.id].count = 1;
+              hashtagCounts[record.id].strength = 0;
+            }
+            if (hashtagCounts[record.id].count > maxCount) {
+              maxCount = hashtagCounts[record.id].count;
+            }
+          // }
+        })
+      });
+    })
+  })
+  .then(function () {
+    var results = [];
+
+    for (var hashtag in itemCounts) {
+      itemCounts[hashtag].strength = itemCounts[hashtag].count / maxCount;
+      results.push(itemCounts[hashtag]);
+    }
+    
+    console.log(results);
+    return results;
+  })
+};
+
+module.exports = {
+  getRelatedHashtags: getRelatedHashtags
+};
+
+// var testItem = [{id: 1}, {id:2}, {id:3}];
+// var testGRI = getRelatedItems(testItem);
+// console.log(testGRI);
