@@ -9,7 +9,8 @@ var session = require('express-session');
 // var TwitterStrategy =  require("passport-twitter").Strategy;
 var routes = require('./routes/routes');
 // var TwitterAPI = require('./controllers/twitterApiController.js');
-var socketTweet = require('./service/tweetSocket');
+var socketTweet = require('./service/tweetSocket.js');
+var socketio = require('socket.io');
 
 // **Important password and keys **
 if (!process.env.CONSUMER_KEY) {
@@ -57,6 +58,21 @@ app.use('/', routes);
 var server = app.listen(port);  
 console.log('App listening on ' + port);
 
-socketTweet.io();
+var io = socketio.listen(express.server);
+console.log(io);
 
-module.exports = app;
+// Create web socket connection
+io.sockets.on('connection', function (socket) {
+  socket.on('tweet flow', function () {
+    socketTweet.connect(this);
+  });
+  socket.on("disconnect", function() {
+    console.log('disconnected');
+  });
+  socket.emit("connected");
+});
+
+module.exports = {
+  app: app,
+  server: server
+};
