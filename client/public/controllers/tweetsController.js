@@ -4,6 +4,20 @@ angular.module('app.tweets', [])
   '$scope', 
   'tweetMessageService', 
   function ($scope, tweetMessageService){
-    $scope.test = tweetMessageService.testdata;
+    $scope.data = {};
+    $scope.data.show = false
+    // taking advantage of references 
+    // or making a horrible mistake
+    var showMessage = function (message) {
+      $scope.data.message = message;
+      $scope.data.show = true;
+      $scope.$apply();
+    };
+
+    $scope.hideMessage = function () {
+      $scope.data.show = false;
+    };
+
+    tweetMessageService.addListener(showMessage);
   }
 ]);
