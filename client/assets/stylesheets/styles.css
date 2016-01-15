@@ -129,7 +129,6 @@ input[type="text"], textarea, select {
   min-height: 100px;
   padding: 3px;
   box-shadow: -2px 2px 3px gray;
-
 }
 
 .user-tweet {
@@ -140,15 +139,17 @@ input[type="text"], textarea, select {
 hr {
   clear: both;
   display: block;
-  width: 90%;               
+  width: 82%;               
   background-color:LightSkyBlue;
   height: 1px;
-  margin: 7px auto;
+  margin: 3px 0px;
+  float: right;
 }
 
 .tweet-user {
   font-family: sans-serif;
-  margin-top: 4px;
+  margin-top: 0px;
+  margin-left: 2px;
 }
 
 .tweet-text {
@@ -159,4 +160,10 @@ hr {
 
 .animate-hide {
   transition: all linear 0.5s;
+}
+
+.user-image {
+  float: left;
+  width: 35px;
+  height: 35px;
 }
