@@ -15,8 +15,8 @@ var addHashtag = function (object) {
     return Promise.each(object.hashtags, function (hashtag){
       // find or crate the hash tag
       return model.Hashtag.findOrCreate({
-        where: {name: hashtag}, 
-        defaults: {name: hashtag},
+        where: {name: hashtag.text}, 
+        defaults: {name: hashtag.text},
       })
       // once we have the hashtag object
       .then(function (hashtag) {
