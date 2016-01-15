@@ -38,7 +38,6 @@ var connect = function (server) {
               var hashTagExists;
 
               count++;
-              console.log("Tweet Recieved: " + count);
 
               // looking for search term within the text of the tweet
               // if (twitterTopic !== undefined) {
@@ -74,6 +73,9 @@ var connect = function (server) {
                   // retweet_count: tweetObject['retweet_count'],
                   // favorite_count: tweetObject['favorite_count']
                 };
+
+                console.log("Hashtags: ");
+                console.dir(tweetObject.entities);
 
                 var databaseTweet = {
                   name: scrubbedTweetObject.handle,
