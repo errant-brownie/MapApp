@@ -1,7 +1,6 @@
 app.service('httpService', ['$http', function ($http) {
 
   this.signUp = function (username, password, email) {
-
     var signupUser = {
       username : username,
       password : password,
@@ -19,13 +18,13 @@ app.service('httpService', ['$http', function ($http) {
   };
 
   //adding favorite to users list of favorites
-  this.sendFavorite = function (favorite) {
+  this.filterTweets = function (hashtag) {
     
-    var addToFavorites = {
-      favorites: favorite
+    var filterHashtag = {
+      hashtag: hashtag
     };
 
-    return $http.put("/api/users", addToFavorites)
+    return $http.post("/api/hashtag", filterHashtag)
       .then(function (success) {
         return success;
       }, function (error) {
