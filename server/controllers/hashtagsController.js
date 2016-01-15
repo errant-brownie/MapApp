@@ -6,8 +6,6 @@ var Promise = require('bluebird');
 // { hashtags: ['xyz', 'abc', ...], 
 //   name: { id: 'INTEGER', name: 'abc' } }
 var addHashtag = function (object) {
-  console.log("Adding hash tags: ");
-  console.dir(object);
   var userParams = { name: object.name };
   
   // find or create the user
@@ -22,10 +20,7 @@ var addHashtag = function (object) {
       })
       // once we have the hashtag object
       .then(function (hashtag) {
-        console.log('hashtag.id: ' + hashtag[0].id);
-        console.log(hashtag);
-        console.log('user.name: ' + user[0].name);
-        console.log(user);
+        // hashtag and user are both arrays aparently
         var params = { hashtag_id: hashtag[0].id, user_id: user[0].id }
         // find or create an entry into the join table.
         return model.HashtagUser.findOrCreate({
