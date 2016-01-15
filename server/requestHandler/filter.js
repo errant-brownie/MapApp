@@ -1,9 +1,13 @@
 var Engine = require('../controllers/engineController');
 
-var updateFilter = function (hastag, threshold) {
+// the filter is an array of hashtags to filter
+var filter = [];
+
+// update the filter with hashtags associated with the hashtag parameter
+var updateFilter = function (hashtag, threshold) {
   if (hashtag) {
     var threshold = threshold || .25;
-    return Engine.getRelatedItems(hashtag)
+    return Engine.getRelatedHashtags(hashtag)
       .then(function (relatedHashtags) {
         var result = [];
 
@@ -13,14 +17,16 @@ var updateFilter = function (hastag, threshold) {
           }
         }
 
+        filter = result;
         return result;
       }
     );
   } else {
-    return;
+    return filter;
   }
 };
 
 module.exports = {
+  filter: filter,
   updateFilter: updateFilter
 };
