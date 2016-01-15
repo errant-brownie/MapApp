@@ -59,6 +59,7 @@ body, html{
   /* style stuff */
   background: -webkit-linear-gradient(#1d5982, #003d66);
   opacity: .925;
+  box-shadow: -2px 2px 6px 2px black;
 }
 
 .search {
@@ -115,12 +116,12 @@ input[type="text"], textarea, select {
 
 .tweets {
   align-self: flex-start;
-  width: 14em;
+  width: 0px;
   /*height: 26%;*/
 
   /*height: -webkit-fit-content;  */
   /*margin-top: 47px;*/
-  margin-left: 10px;
+  margin-left: -15px;
   background-color: #f9f9f9;
   min-height: 100px;
   padding: 3px;
