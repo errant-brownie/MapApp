@@ -116,10 +116,10 @@ angular.module('app.mapService', [])
           //determine content added to info window on each marker  
           // var tweetContent = '<div>' + data['name'] + ": " + data['tweetText'] + '</div>';
 
-
           var tweetContent = {};
           tweetContent.name = data['name'];
-          tweetContent.tweetText= data['tweetText'];
+          tweetContent.tweetText = data['tweetText'];
+          tweetContent.hashtags = data['hashtags']
 
           // var markerInfoWindow = new google.maps.InfoWindow({
           //    content: tweetContent

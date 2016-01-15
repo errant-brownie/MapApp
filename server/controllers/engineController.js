@@ -20,6 +20,7 @@ var Promise = require('bluebird');
 */
 
 var getRelatedHashtags = function (hashtagList) {
+  console.log('hashtag list:', hashtagList);
   // max count for calculating relational strength
   var maxCount = 0;
   var hashtagCounts = {};
@@ -41,10 +42,12 @@ var getRelatedHashtags = function (hashtagList) {
   })
   // expected input to be array of { hashtags } to the .then block
   .then(function (hashtags) {
+    console.log('hashtags: ', hashtags);
     return hashtags.reduce(function (accum, record) {
       record.Users.forEach(function(hashtag) {
         accum.push(hashtag.id);
       })
+      console.log('accumulator: ', accum);
       return accum;
     }, []);
   })
@@ -61,20 +64,22 @@ var getRelatedHashtags = function (hashtagList) {
         recordsArr.Hashtags.forEach(function (record) {
           // deletes unnecessary data from item object
           delete record.dataValues.hashtag_user;
-          // this check is to make sure that none of the items in the itemList exist in the return array
-          // if (itemObj[record.id] === undefined) {
-            if (!!hashtagCounts[record.id]) {
-              hashtagCounts[record.id].count++;
-            } else {
-              hashtagCounts[record.id] = {};
-              hashtagCounts[record.id].hashtag = record.dataValues;
-              hashtagCounts[record.id].count = 1;
-              hashtagCounts[record.id].strength = 0;
-            }
-            if (hashtagCounts[record.id].count > maxCount) {
-              maxCount = hashtagCounts[record.id].count;
-            }
-          // }
+
+          // check if hashtag id exists in hashtagCounts object
+          if (!!hashtagCounts[record.id]) {
+            hashtagCounts[record.id].count++;
+          } else {
+            // if it does not exist, create it
+            hashtagCounts[record.id] = {};
+            hashtagCounts[record.id].hashtag = record.dataValues;
+            hashtagCounts[record.id].count = 1;
+            hashtagCounts[record.id].strength = 0;
+          }
+          // if the count for this hashtag is larger than the max count
+          if (hashtagCounts[record.id].count > maxCount) {
+            // set the max count to the count of the current hashtag
+            maxCount = hashtagCounts[record.id].count;
+          }
         })
       });
     })
@@ -82,12 +87,13 @@ var getRelatedHashtags = function (hashtagList) {
   .then(function () {
     var results = [];
 
-    for (var hashtag in itemCounts) {
-      itemCounts[hashtag].strength = itemCounts[hashtag].count / maxCount;
-      results.push(itemCounts[hashtag]);
+    // calculate strength based on max count and the count of each hashtag
+    for (var hashtag in hashtagCounts) {
+      hashtagCounts[hashtag].strength = hashtagCounts[hashtag].count / maxCount;
+      results.push(hashtagCounts[hashtag]);
     }
     
-    console.log(results);
+    console.log('!!!!!!!results: ', results);
     return results;
   })
 };
