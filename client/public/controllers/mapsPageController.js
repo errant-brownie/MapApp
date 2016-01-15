@@ -72,16 +72,19 @@ app.controller('mapsPageController', [
       
       //code is a little buggy, but should offer a good start for doing the following when a search request is submitted:
       // a) clearing the map, b) emitting a filter request to the stream and c) re-starting the heatmap
-      // $scope.submitSearch = function () {
-      //   deleteMarkers();
-      //   heatmap.setMap(null);
-      //   socket.emit("filter", $scope.searchField);
-      //   console.log($scope.searchField);
-      //   heatmap = new google.maps.visualization.HeatmapLayer({
-      //     radius: 15
-      //   });
-      //   heatmap.setMap(window.map);
-      // };
+      $scope.submitSearch = function () {
+        // deleteMarkers();
+        // heatmap.setMap(null);
+        // socket.emit("filter", $scope.searchField);
+
+        console.log($scope.searchField);
+        httpService.filterTweets($scope.searchField);
+        
+        // heatmap = new google.maps.visualization.HeatmapLayer({
+        //   radius: 15
+        // });
+        // heatmap.setMap(window.map);
+      };
 
       var count = 0;
       socket.on('tweet-stream', function (data) {

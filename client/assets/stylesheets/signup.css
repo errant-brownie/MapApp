@@ -13,7 +13,7 @@ body {
 }
 
 #Form-Wrapper {
-  border:10px solid black;
+  /*border:10px solid black;*/
   background:#222;
   border-radius: 10px;
   width:600px;
@@ -43,7 +43,7 @@ form h1 {
 
 a {
   display:block;
-  width: 346px;
+  /*width: 346px;*/
   margin-left:auto;
   margin-right: auto;
 }
