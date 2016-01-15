@@ -1,4 +1,5 @@
 //filterController.js
-angular.module('app.filter', [])
+angular.module('app.filter', ['httpService'])
+.controller('filterController', function ($scope, httpService) {
 
-.controller('filterController',['$scope', function(){}]);
+});
