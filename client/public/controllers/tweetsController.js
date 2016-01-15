@@ -5,7 +5,7 @@ angular.module('app.tweets', [])
   'tweetMessageService', 
   function ($scope, tweetMessageService){
     $scope.data = {};
-    $scope.data.show = false
+    $scope.data.show = true
     // taking advantage of references 
     // or making a horrible mistake
     var showMessage = function (message) {
@@ -16,6 +16,30 @@ angular.module('app.tweets', [])
 
     $scope.toggleMessage = function () {
       $scope.data.show = !$scope.data.show;
+
+
+    if ($scope.data.show){
+      $( ".tweets" ).animate({
+          width: 0,
+          "margin-left": "-15px"
+      }, 1000, function() {
+        // Animation complete.
+      });
+    }else{
+      $( ".tweets" ).animate({
+          width: "230px",
+          "margin-left": "5px"
+
+      }, 1000, function() {
+        // Animation complete.
+      });
+    }
+
+
+
+
+
+
     };
 
     tweetMessageService.addListener(showMessage);
