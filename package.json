@@ -22,11 +22,13 @@
   },
   "homepage": "https://github.com/FragrantNumerator/MapApp#readme",
   "dependencies": {
+    "bluebird": "^3.1.1",
     "body-parser": "^1.14.2",
     "bower": "^1.7.2",
     "express": "^4.13.3",
     "express-session": "^1.12.1",
     "favicon": "0.0.2",
+    "jquery": "^2.2.0",
     "mongoose": "^4.3.4",
     "mysql": "^2.10.2",
     "passport": "^0.3.2",

@@ -9,7 +9,7 @@ var session = require('express-session');
 var routes = require('./routes/routes');
 // var TwitterAPI = require('./controllers/twitterApiController.js');
 var socketService = require('./service/socketService');
-var db = require('db/dbModel');
+var db = require('./db/dbModel');
 
 // **Important password and keys **
 if (!process.env.CONSUMER_KEY) {

@@ -130,7 +130,13 @@ app.controller('mapsPageController', [
          });
 
         //determine content added to info window on each marker  
-        var tweetContent = '<div>' + data['name'] + ": " + data['tweetText'] + '</div>';
+        // var tweetContent = '<div>' + data['name'] + ": " + data['tweetText'] + '</div>';
+
+
+        var tweetContent = {};
+        tweetContent.name = data['name'];
+        tweetContent.tweetText= data['tweetText'];
+
         // var markerInfoWindow = new google.maps.InfoWindow({
         //    content: tweetContent
         //  });
