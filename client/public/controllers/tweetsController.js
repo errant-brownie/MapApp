@@ -5,7 +5,7 @@ angular.module('app.tweets', [])
   'tweetMessageService', 
   function ($scope, tweetMessageService){
     $scope.data = {};
-    $scope.data.show = true
+    $scope.data.show = false;
 
     var slide = function(){  
     if (! $scope.data.show){
@@ -24,7 +24,6 @@ angular.module('app.tweets', [])
         // Animation complete.
       });
     }
-    $scope.$apply();
     };
 
 
@@ -32,6 +31,7 @@ angular.module('app.tweets', [])
       $scope.data.message = message;
       $scope.data.show = true;
       slide();
+      $scope.$apply();
     };
 
     $scope.toggleMessage = function () {
