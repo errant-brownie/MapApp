@@ -1,4 +1,5 @@
 var Engine = require('../controllers/engineController');
+var HashtagsController = require('../controllers/hashtagsController');
 
 // the filter is an array of hashtags to filter
 var filter = [];
@@ -7,18 +8,21 @@ var filter = [];
 var updateFilter = function (hashtag, threshold) {
   if (hashtag) {
     var threshold = threshold || .25;
-    return Engine.getRelatedHashtags(hashtag)
-      .then(function (relatedHashtags) {
-        var result = [];
+    HashtagsController.getIdForHashtag(hashtag)
+      .then(function (hashtagArr) {
+        Engine.getRelatedHashtags(hashtagArr)
+          .then(function (relatedHashtags) {
+            var result = [];
 
-        for (var i = 0; i < relatedHashtags.length; i++) {
-          if (relatedHashtags[i].strength >= threshold) {
-            result.push(relatedHashtags[i]);
-          }
-        }
+            for (var i = 0; i < relatedHashtags.length; i++) {
+              if (relatedHashtags[i].strength >= threshold) {
+                result.push(relatedHashtags[i]);
+              }
+            }
 
-        filter = result;
-        return result;
+            filter = result;
+            return result;
+          })
       }
     );
   } else {

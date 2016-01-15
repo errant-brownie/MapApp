@@ -38,7 +38,8 @@ var connect = function (server) {
               var hashTagExists;
 
               count++;
-              console.log(count);
+              throttle++;
+              // console.log(count);
 
               // looking for search term within the text of the tweet
               // if (twitterTopic !== undefined) {
@@ -112,14 +113,8 @@ var connect = function (server) {
                     socket.emit("tweet-stream", scrubbedTweetObject);
                   })
                   .catch(function (err) {
-
+                    console.log('error!!!', err);
                   })
-                // emit to client and send back tweet object
-
-                //changing twitterTopic to return new data related to twitterTopic mid-stream
-                //below causes a memory leak (global variable)
-              // }
-              //Tweet Object that has been scrubbed for relevant data 
             }
           }
         });
