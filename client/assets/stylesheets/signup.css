@@ -1,50 +1,23 @@
-body {
-  background: url('../images/map.png');
+body, html{
+  position:relative;
+  height: 100%;
+  margin: 0px;
+  background: -webkit-linear-gradient(#CDEBFF, #A2CAE8);
 }
 
 .overlay {
-  position: absolute;
-  top:0;
-  left:0;
+  display: flex;
   height:100%;
   width:100%;
-  background-color:#222;
-  opacity: 0.85;
-}
-
-#Form-Wrapper {
-  /*border:10px solid black;*/
-  background:#222;
-  border-radius: 10px;
-  width:600px;
-  margin-left:auto;
-  margin-right:auto;
-  margin-top: 75px;
-  padding-top: 55px;
-  padding-bottom: 90px;
-  z-index: 1;
-}
-
-form {
-  width:400px;
-  margin:0 auto;
-}
-
-form h1 {
-  margin-top: 27px;
-  margin-bottom: 31px;
-  text-align: center;
-  color:white;
-}
-
-.h1, h1 {
-    font-size: 43px;
+  align-items: center;
+  justify-content: center;
 }
 
 a {
-  display:block;
-  /*width: 346px;*/
-  margin-left:auto;
-  margin-right: auto;
+  flex-direction: row;
+  self-align: center;
 }
 
+img {
+  width: 350px;
+}
