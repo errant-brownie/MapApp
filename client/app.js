@@ -2,7 +2,7 @@ var app = angular.module('app', [
   'signup', 
   'renderMap',
   'app.tweets',
-  'app.filter',
+  // 'app.filter',
   'app.search',
   'app.tweetMessageService',
   'ngAnimate', 
@@ -22,10 +22,10 @@ $stateProvider
           controller: "tweetsController",
           templateUrl: "client/views/tweetsView.html" 
         },
-        'rightDiv': { 
-          controller: "filterController",
-          templateUrl: "client/views/filterListView.html" 
-        },
+        // 'rightDiv': { 
+        //   controller: "filterController",
+        //   templateUrl: "client/views/filterListView.html" 
+        // },
         'searchbar': {
           controller: "searchController",
           templateUrl: "client/views/searchView.html"
