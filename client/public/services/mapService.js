@@ -45,6 +45,8 @@ angular.module('app.mapService', [])
         radius: 15
       });
 
+
+
       HEATmap = heatmap;
       
 
@@ -58,6 +60,7 @@ angular.module('app.mapService', [])
       //////////////////////////////////////////SET UP HEAT MAP///////////////////////////////////////////////////
       $timeout(function(){
         heatmap.setMap(window.map);
+
       }, 10);
    
       //////////////////////////////////////////CONNECT TO SOCKET///////////////////////////////////////////////
@@ -138,6 +141,18 @@ angular.module('app.mapService', [])
 
           allTweets.data.push(tweetMarker);
 
+
+
+
+
+          google.maps.event.addListener(window.map, "zoom_changed", function() {
+            HEATmap.setOptions({
+              radius: window.map.getZoom() * 8,
+              dissipating: true
+            });
+          });
+
+
         })
         
 
@@ -152,6 +167,10 @@ angular.module('app.mapService', [])
       HEATmap.setMap(null);
       HEATmap.setData([])
       HEATmap.setMap(window.map)
+
+   
+
+
     }
 
     return {
