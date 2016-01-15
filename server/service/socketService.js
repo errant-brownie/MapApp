@@ -79,50 +79,55 @@ var connect = function (server) {
                   hashtags: scrubbedTweetObject.hashtags
                 };
 
-                hashtagsController.addHashtag(databaseTweet)
-                  .then(function () {
-                    if (count > 1000) {
-                      count = 0;
-                      // returned object will be of the following format...
-                        // { name: 'abc', strength: .02923, count: 1234 }
-                      return filterService.updateFilter(filterHashtag());
-                    } else {
-                      return filterService.filter;
-                    }
-                  })
-                  // filter should be an array
-                  .then(function (filter) {
-                    if (filter.length > 0) {
-                      // for each hash tag in filter
-                      for (var i = 0; i < filter.length; i++) {
-                        // check if the tweet has the filter hashtag
-                        // itterate over tweet's hashtag array
-                        for (var j = 0; j < scrubbedTweetObject.hashtags.length; j++) {
-                          console.log('filter: ', filter[i], ', tweet hashtags: ', scrubbedTweetObject.hashtags);
-                          if (filter[i].name == scrubbedTweetObject.hashtags[j].text) {
+                // if scrubbed tweet object has any hashtags
+                if (scrubbedTweetObject.hashtags.length > 0) {
+                  hashtagsController.addHashtag(databaseTweet)
+                    .then(function () {
+                      if (count > 1000) {
+                        count = 0;
+                        // returned object will be of the following format...
+                          // { name: 'abc', strength: .02923, count: 1234 }
+                        return filterService.updateFilter(filterHashtag());
+                      } else {
+                        return filterService.filter;
+                      }
+                    })
+                    // filter should be an array
+                    .then(function (filter) {
+                      if (filter.length > 0) {
+                        // for each hash tag in filter
+                        for (var i = 0; i < filter.length; i++) {
+                          // check if the tweet has the filter hashtag
+                          // itterate over tweet's hashtag array
+                          for (var j = 0; j < scrubbedTweetObject.hashtags.length; j++) {
+                            console.log('filter: ', filter[i], ', tweet hashtags: ', scrubbedTweetObject.hashtags);
+                            if (filter[i].name == scrubbedTweetObject.hashtags[j].text) {
 
-                            // attach strength rating, count, and 'related' hashtag to scrubbed tweet object passed to client
-                            scrubbedTweetObject['strength'] = filter[i]['strength'];
-                            scrubbedTweetObject['count'] = filter[i]['count'];
-                            scrubbedTweetObject['relatedHashtag'] = filter[i]['name'];
+                              // attach strength rating, count, and 'related' hashtag to scrubbed tweet object passed to client
+                              scrubbedTweetObject['strength'] = filter[i]['strength'];
+                              scrubbedTweetObject['count'] = filter[i]['count'];
+                              scrubbedTweetObject['relatedHashtag'] = filter[i]['name'];
 
-                            console.log('filter passed, tweet being passed to client: ', scrubbedTweetObject)
-                            return scrubbedTweetObject;
+                              console.log('filter passed, tweet being passed to client: ', scrubbedTweetObject)
+                              return scrubbedTweetObject;
+                            }
                           }
                         }
+                        throw(new Error('Item does not contain filter hashtags'));
+                      } else {
+                        return scrubbedTweetObject;
                       }
-                      throw(new Error('Item does not contain filter hashtags'));
-                    } else {
-                      return scrubbedTweetObject;
-                    }
-                  })
-                  .then(function (tweets) {
-                    socket.broadcast.emit("tweet-stream", scrubbedTweetObject);
-                    socket.emit("tweet-stream", scrubbedTweetObject);
-                  })
-                  .catch(function (err) {
-                    console.log('error!!!', err);
-                  })
+                    })
+                    .then(function (tweets) {
+                      socket.broadcast.emit("tweet-stream", scrubbedTweetObject);
+                      socket.emit("tweet-stream", scrubbedTweetObject);
+                    })
+                    .catch(function (err) {
+                      console.log('error!!!', err);
+                    })
+                  } else {
+                    console.log('no hashtags!')
+                  }
             }
           }
         });
