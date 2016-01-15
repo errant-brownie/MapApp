@@ -4,14 +4,23 @@ var HashtagsController = require('../controllers/hashtagsController');
 // the filter is an array of hashtags to filter
 var filter = [];
 
+var getFilter = function(newFilter) {
+  if (newFilter) {
+    filter = newFilter;
+  }
+  return filter;
+};
+
 // update the filter with hashtags associated with the hashtag parameter
 var updateFilter = function (hashtag, threshold) {
   if (hashtag) {
-    var threshold = threshold || 0;
+    var threshold = threshold || 0.1;
     HashtagsController.getIdForHashtag(hashtag)
       .then(function (hashtagArr) {
+        console.log('hashtag array: ', hashtagArr);
         Engine.getRelatedHashtags(hashtagArr)
           .then(function (relatedHashtags) {
+            console.log('related hashtags: ', relatedHashtags);
             var result = [];
 
             for (var i = 0; i < relatedHashtags.length; i++) {
@@ -21,21 +30,23 @@ var updateFilter = function (hashtag, threshold) {
                   strength: relatedHashtags[i]['strength'],
                   count: relatedHashtags[i]['count']
                 };
+                // add related hashtag object to result array;
                 result.push(relatedHashtag);
               }
             }
-            console.log(filter);
-            filter = result;
+            getFilter(result);
+
+            console.log('new filter: ', getFilter());
             return result;
           })
       }
     );
   } else {
-    return filter;
+    return getFilter();
   }
 };
 
 module.exports = {
-  filter: filter,
+  getFilter: getFilter,
   updateFilter: updateFilter
 };

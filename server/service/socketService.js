@@ -89,19 +89,21 @@ var connect = function (server) {
                           // { name: 'abc', strength: .02923, count: 1234 }
                         return filterService.updateFilter(filterHashtag());
                       } else {
-                        return filterService.filter;
+                        // filter should be an array
+                        console.log('filter service filter variable: ',filterService.getFilter())
+                        return filterService.getFilter();
                       }
                     })
-                    // filter should be an array
                     .then(function (filter) {
+                      console.log('inside socket service filter promise: ', filter);
                       if (filter.length > 0) {
                         // for each hash tag in filter
                         for (var i = 0; i < filter.length; i++) {
                           // check if the tweet has the filter hashtag
                           // itterate over tweet's hashtag array
                           for (var j = 0; j < scrubbedTweetObject.hashtags.length; j++) {
-                            console.log('filter: ', filter[i], ', tweet hashtags: ', scrubbedTweetObject.hashtags);
-                            if (filter[i].name == scrubbedTweetObject.hashtags[j].text) {
+                            // console.log('filter: ', filter[i], ', tweet hashtags: ', scrubbedTweetObject.hashtags);
+                            if (filter[i].name.toUpperCase() == scrubbedTweetObject.hashtags[j].text.toUpperCase()) {
 
                               // attach strength rating, count, and 'related' hashtag to scrubbed tweet object passed to client
                               scrubbedTweetObject['strength'] = filter[i]['strength'];
