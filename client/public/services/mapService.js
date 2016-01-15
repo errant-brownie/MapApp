@@ -34,6 +34,7 @@ angular.module('app.mapService', [])
     };
     ////////////////////////////////////////////CREATE AND OPEN SOCKET/////////////////////////////////////////////////////////
     
+    var HEATmap;
     var onInit = function() {
       
       ////////////////////////////////ASSUMPTIONS + DRIVERS FOR HANDLING DATA STREAM///////////////////////////////////////////
@@ -43,6 +44,8 @@ angular.module('app.mapService', [])
       var heatmap = new google.maps.visualization.HeatmapLayer({
         radius: 15
       });
+
+      HEATmap = heatmap;
       
 
 
@@ -146,6 +149,12 @@ angular.module('app.mapService', [])
       };
     };
 
+    var clearHeat = function(){
+      HEATmap.setMap(null);
+      HEATmap.setData([])
+      HEATmap.setMap(window.map)
+    }
+
     return {
       onInit: onInit,
       allTweets: allTweets,
@@ -153,6 +162,7 @@ angular.module('app.mapService', [])
       clearMarkers: clearMarkers,
       deleteMarkers:deleteMarkers,
       setMapOnAll: setMapOnAll,
+      clearHeat:clearHeat
     }
   }
 ]);
