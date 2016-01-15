@@ -38,7 +38,7 @@ var connect = function (server) {
               var hashTagExists;
 
               count++;
-              console.log(count);
+              console.log("Tweet Recieved: " + count);
 
               // looking for search term within the text of the tweet
               // if (twitterTopic !== undefined) {
@@ -76,16 +76,17 @@ var connect = function (server) {
                 };
 
                 var databaseTweet = {
-                  name: tweetObject.user['name'],
-                  hashtags: tweetObject.entities['hashtags']
+                  name: scrubbedTweetObject.handle,
+                  hashtags: scrubbedTweetObject.hashtags,
                 };
 
                 hashtagsController.addHashtag(databaseTweet)
                   .then(function () {
                     if (count % 997 === 0) {
-                      return filterService.updateFilter()
+                      return filterService.updateFilter(twitterTopic)
                     }
                   })
+                  // filter should be an array
                   .then(function (filter) {
                     if (filter) {
                       for (var i = 0; i < filter.length; i++) {
@@ -124,6 +125,19 @@ var connect = function (server) {
     socket.emit("connected");
   });
 };
+
+// throw dummy data into database
+// var dummy = function () {
+
+//   var databaseTweet = {
+//     name: "Alex",
+//     hashtags: ['winning', 'obama', 'losing'],
+//   };
+
+//   hashtagsController.addHashtag(databaseTweet)
+//     // filter should be an array
+// }
+// dummy();
 
 module.exports = {
   connect: connect,
