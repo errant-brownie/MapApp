@@ -119,7 +119,6 @@ angular.module('app.mapService', [])
           var tweetContent = {};
           tweetContent.name = data['name'];
           tweetContent.tweetText = data['tweetText'];
-          tweetContent.hashtags = data['hashtags']
 
           // var markerInfoWindow = new google.maps.InfoWindow({
           //    content: tweetContent
