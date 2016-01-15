@@ -61,7 +61,6 @@ var getRelatedHashtags = function (hashtagList) {
     .then(function (hashtagUsersRecords) {
       // find each item that this member 'likes'
       return hashtagUsersRecords.forEach(function (recordsArr) {
-        console.log('records array: ', recordsArr)
         recordsArr.Hashtags.forEach(function (record) {
           // deletes unnecessary data from item object
           delete record.dataValues.hashtag_user;
