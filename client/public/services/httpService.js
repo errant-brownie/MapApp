@@ -20,7 +20,7 @@ app.service('httpService', ['$http', function ($http) {
 
   //adding favorite to users list of favorites
   this.sendFavorite = function (favorite) {
-
+    
     var addToFavorites = {
       favorites: favorite
     };

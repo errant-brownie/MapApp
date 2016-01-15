@@ -6,10 +6,10 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var passport = require("passport");
 var session = require('express-session');
-// var TwitterStrategy =  require("passport-twitter").Strategy;
 var routes = require('./routes/routes');
 // var TwitterAPI = require('./controllers/twitterApiController.js');
-var tweetSocket = require('./service/tweetSocket');
+var socketService = require('./service/socketService');
+var db = require('./db/dbModel');
 
 // **Important password and keys **
 if (!process.env.CONSUMER_KEY) {
@@ -26,6 +26,7 @@ var twitterTopic ;
 // ** NEED TO IMPLEMENT Setup server to listen to MongoLab URI delegating to local db 
 var mapDB = process.env.MONGOLAB_URI || 'mongodb://localhost:27017/users-tweets';
 mongoose.connect(mapDB);
+db.init();
 
 // Set Up Authorization 
 var Auth = require('./auth/auth.js');
@@ -55,6 +56,6 @@ var server = app.listen(port);
 console.log('App listening on ' + port);
 
 //socket.io code below
-tweetSocket.connect(server);
+socketService.connect(server);
 
 module.exports = app;

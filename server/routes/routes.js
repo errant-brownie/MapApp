@@ -5,6 +5,7 @@ var path = require('path');
 var twitterApiController = require('../controllers/twitterApiController.js');
 var UserController = require('../controllers/userController.js');
 var passport = require('passport');
+var socketService = require('../service/socketService');
 
 var isLoggedIn = function (req, res, next) {
   // if user is authenticated in the session, carry on
@@ -39,17 +40,22 @@ router.get('/logout', function (req, res) {
 });
 
 // Handle GET request to Twitter API
-router.get('/api/tweets/:category', twitterApiController.getTweets);
+// router.get('/api/tweets/:category', twitterApiController.getTweets);
 
 // Handle PUT request to /api/users (to change favorites)
 router.put('/api/users/:username', function (req, res) {
   console.log('Recevied PUT request from client', req.body);
-  var favorites = req.body.favorites;
-  UserController.addFavorite(req.params.username, favorites, function (response) {
-    console.log('Successfully updated favorites');
+  var favoritesHashtags = req.body.favoritesHashtags;
+  UserController.addFavorite(req.params.username, favoritesHashtags, function (response) {
+    console.log('Successfully updated favorite hashtags');
     res.sendStatus(200);
   });
 });
+
+router.post('/api/hashtag', function(req, res) {
+  var hashtag = req.body.hashtag;
+  socketService.filterHashtag(hashtag);
+})
 
 router.get('/signup', function (req, res) {
   res.sendFile(path.join(__dirname, '../../client/views/signup.html'));
