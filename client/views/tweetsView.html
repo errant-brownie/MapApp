@@ -8,6 +8,7 @@
    <h3 class="tweet-user ng-hide" ng-show="data.show">{{data.message.name}}</h3>
    <hr ng-show="!data.show">
    <p ng-show="data.show" class="tweet-text ng-hide">{{data.message.tweetText}}</p>
+   <p ng-repeat="tag in data.hashtags track by $index">{{data.hashtags}}</p>
   </div>
 
 
