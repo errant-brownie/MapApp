@@ -2,6 +2,7 @@ var app = angular.module('app', [
   'signup', 
   'renderMap',
   'app.tweets',
+  'app.mapService',
   // 'app.filter',
   'app.search',
   'app.tweetMessageService',

@@ -8,6 +8,7 @@ var hashtag = null;
 var filterHashtag = function (newHashtag) {
   if (newHashtag) {
     hashtag = newHashtag;
+    filterService.updateFilter(hashtag);
   }
   return hashtag;
 };
@@ -81,17 +82,22 @@ var connect = function (server) {
 
                 hashtagsController.addHashtag(databaseTweet)
                   .then(function () {
-                    if (count === 1000) {
+                    if (count > 1000) {
                       count = 0;
                       return filterService.updateFilter(filterHashtag());
+                    } else {
+                      return filterService.filter;
                     }
                   })
                   // filter should be an array
                   .then(function (filter) {
-                    if (filter) {
+                    if (filter.length > 0) {
+                      // for each hash tag in filter
                       for (var i = 0; i < filter.length; i++) {
+                        // check if the tweet has the filter hashtag
+                        // itterate over tweet's hashtag array
                         for (var j = 0; j < scrubbedTweetObject.hashtags.length; j++) {
-                          if (filter[i] == scrubbedTweetObject.hashtags[j]) {
+                          if (filter[i] == scrubbedTweetObject.hashtags[j].text) {
                             return scrubbedTweetObject
                           }
                         }
