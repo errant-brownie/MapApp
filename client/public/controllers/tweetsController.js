@@ -29,6 +29,7 @@ angular.module('app.tweets', [])
 
     var showMessage = function (message) {
       $scope.data.message = message;
+      console.log(message.hashtags);
       $scope.data.show = true;
       slide();
       $scope.$apply();

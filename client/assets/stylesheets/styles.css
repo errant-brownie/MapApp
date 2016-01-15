@@ -15,11 +15,12 @@ body, html{
   width: 10px;
   border-radius: 0px 8px 8px 0px;
   font-size: 0.5em;
-  background-color: #f6f6f6;
+  background-color: #edf9ff;
   height:50%;
   color: gray;
-  border-right: 1px solid gray;
+  border-bottom: 1px solid gray;
 }
+
 .toggle:focus{
   outline:none;
 }
@@ -124,7 +125,7 @@ input[type="text"], textarea, select {
   /*height: -webkit-fit-content;  */
   /*margin-top: 47px;*/
   margin-left: -15px;
-  background-color: #f9f9f9;
+  background-color: #edf9ff;
   min-height: 100px;
   padding: 3px;
   box-shadow: -2px 2px 3px gray;
@@ -137,9 +138,8 @@ input[type="text"], textarea, select {
 }
 
 hr {
-  border: 1px;
-  clear:both;
-  display:block;
+  clear: both;
+  display: block;
   width: 90%;               
   background-color:LightSkyBlue;
   height: 1px;
@@ -152,6 +152,8 @@ hr {
 
 .tweet-text {
   font-family: sans-serif;
+  margin-left: 4px;
+  margin-bottom: 4px;
 }
 
 .animate-hide {
