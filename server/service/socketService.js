@@ -8,9 +8,8 @@ var hashtag = null;
 var filterHashtag = function (newHashtag) {
   if (newHashtag) {
     hashtag = newHashtag;
-  } else {
-    return hashtag;
   }
+  return hashtag;
 };
 
 var connect = function (server) {
@@ -38,6 +37,7 @@ var connect = function (server) {
               var hashTagExists;
 
               count++;
+              console.log(count);
 
               // looking for search term within the text of the tweet
               // if (twitterTopic !== undefined) {
@@ -74,9 +74,6 @@ var connect = function (server) {
                   // favorite_count: tweetObject['favorite_count']
                 };
 
-                console.log("Hashtags: ");
-                console.dir(tweetObject.entities);
-
                 var databaseTweet = {
                   name: scrubbedTweetObject.handle,
                   hashtags: scrubbedTweetObject.hashtags,
@@ -84,8 +81,9 @@ var connect = function (server) {
 
                 hashtagsController.addHashtag(databaseTweet)
                   .then(function () {
-                    if (count % 997 === 0) {
-                      return filterService.updateFilter(twitterTopic)
+                    if (count === 1000) {
+                      count = 0;
+                      return filterService.updateFilter(filterHashtag());
                     }
                   })
                   // filter should be an array

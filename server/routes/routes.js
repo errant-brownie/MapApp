@@ -52,9 +52,10 @@ router.put('/api/users/:username', function (req, res) {
   });
 });
 
-router.post('/api/hashtag', function(req, res) {
+router.post('/api/hashtag', function (req, res) {
   var hashtag = req.body.hashtag;
   socketService.filterHashtag(hashtag);
+  res.end();
 })
 
 router.get('/signup', function (req, res) {
