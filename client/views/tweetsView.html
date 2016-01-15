@@ -3,8 +3,8 @@
    •<br><br>
    •
   </button>
-  <div class="tweets ng-hide" ng-show="data.show">
-   <h3 class="tweet-user">@{{data.message.name}}</h3>
-   <hr>
-   <p class="tweet-text">{{data.message.tweetText}}</p>
+  <div class="tweets ng-hide" ng-show="true">
+   <h3 class="tweet-user" ng-show="!data.show">@{{data.message.name}}</h3>
+   <hr ng-show="!data.show">
+   <p ng-show="!data.show" class="tweet-text">{{data.message.tweetText}}</p>
   </div>
