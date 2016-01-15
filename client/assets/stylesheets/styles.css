@@ -59,7 +59,7 @@ body, html{
   /* style stuff */
   background: -webkit-linear-gradient(#1d5982, #003d66);
   opacity: .925;
-  box-shadow: -2px 2px 6px 2px black;
+  box-shadow: -2px 1px 1px 1px #a6a6a6;
 }
 
 .search {
@@ -72,6 +72,7 @@ body, html{
   width: 45px;
   border-radius: 2px;
   background: -webkit-linear-gradient(#CFDBE4, #9EACB5);
+  font-size: .7em;
 }
 
 .form-control {
@@ -135,7 +136,7 @@ input[type="text"], textarea, select {
 }
 
 hr {
-  border: 0;
+  border: 1px;
   clear:both;
   display:block;
   width: 90%;               
@@ -150,4 +151,9 @@ hr {
 
 .tweet-text {
   font-family: sans-serif;
+}
+
+.animate-hide {
+  transition: all linear 0.5s;
+
 }
