@@ -17,4 +17,6 @@ angular.module('app.search', [])
         // });
         // heatmap.setMap(window.map);
       };
-}]);
+    }
+  ]
+);

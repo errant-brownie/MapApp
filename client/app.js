@@ -3,6 +3,7 @@ var app = angular.module('app', [
   'renderMap',
   'app.tweets',
   'app.mapService',
+  'app.suggestionsService',
   // 'app.filter',
   'app.search',
   'app.tweetMessageService',
