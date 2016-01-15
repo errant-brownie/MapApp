@@ -32,13 +32,11 @@ var connect = function (server) {
         TwitterAPI.streamTweets(twitterTopic, function (data) {
           if (data.user.geo_enabled) {
             if (data.coordinates !== null || data.place !== null) {
-              // write.write(JSON.stringify(data) );
               var tweetObject = data;
               var topicExists;
               var hashTagExists;
 
               count++;
-              throttle++;
               // console.log(count);
 
               // looking for search term within the text of the tweet
@@ -78,7 +76,7 @@ var connect = function (server) {
 
                 var databaseTweet = {
                   name: scrubbedTweetObject.handle,
-                  hashtags: scrubbedTweetObject.hashtags,
+                  hashtags: scrubbedTweetObject.hashtags
                 };
 
                 hashtagsController.addHashtag(databaseTweet)
@@ -99,7 +97,7 @@ var connect = function (server) {
                         // itterate over tweet's hashtag array
                         for (var j = 0; j < scrubbedTweetObject.hashtags.length; j++) {
                           if (filter[i] == scrubbedTweetObject.hashtags[j].text) {
-                            return scrubbedTweetObject
+                            return scrubbedTweetObject;
                           }
                         }
                       }
