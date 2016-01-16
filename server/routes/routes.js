@@ -67,7 +67,7 @@ router.post('/api/hashtag', function (req, res) {
   var hashtag = req.body.hashtag;
   filterService.setHashtag(hashtag);
   filterService.updateFilter();
-  res.end();
+  res.json(filterService.getFilter());
 });
 
 // get hashtag suggestions for auto complete feature
@@ -84,8 +84,18 @@ router.get('/api/hashtag/:tag', function (req, res, next){
 
 // Ignore list is a list of tags to remove from the filter
 // add a tag to the ignore list.
-router.post('/api/ignore/:tag',function (req, res, next) {
-  next();
+router.post('/api/ignore/:tag', function (req, res, next) {
+  filterService.addIgnoreTag(req.param.tag);
+  res.json(filterService.getIgnoreTags());
+});
+// remove a tag from the ignore list
+router.delete('/api/ignore/:tag', function (req, res, next) {
+  filterService.unIgnoreTag(req.param.tag);
+  res.json(filterService.getIgnoreTags());
+});
+// get ignore list
+router.get('/api/ignore', function (req, res, next) {
+  res.json(filterService.getIgnoreTags());
 });
 
 module.exports = router;

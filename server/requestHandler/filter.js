@@ -18,7 +18,7 @@ var getFilter = function() {
 
 // removes a tag from the filter
 // needs to keep track of removed tags for when update filter's periodic call
-var ignoreTag = function(tag) {
+var addIgnoreTag = function(tag) {
   ignoreTags[tag] = tag;
 }
 
@@ -27,6 +27,10 @@ var unIgnoreTag = function (tag){
   if(ignoreTags.hasOwnProperty(tag)){
     delete ignoreTags[tag];
   }
+}
+
+var getIgnoreTags = function () {
+  return Object.keys(ignoreTags);
 }
 
 var setHashtag = function(newHashtag){
@@ -87,6 +91,7 @@ module.exports = {
   updateFilter: updateFilter,
   setHashtag: setHashtag,
   setThreshold: setThreshold,
-  ignoreTag: ignoreTag,
+  addIgnoreTag: addIgnoreTag,
   unIgnoreTag: unIgnoreTag,
+  getIgnoreTags: getIgnoreTags,
 };
