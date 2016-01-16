@@ -14,7 +14,7 @@ var getFilter = function(newFilter) {
 // update the filter with hashtags associated with the hashtag parameter
 var updateFilter = function (hashtag, threshold) {
   if (hashtag) {
-    var threshold = threshold || 0.1;
+    var threshold = threshold || 0.05;
     HashtagsController.getIdForHashtag(hashtag)
       .then(function (hashtagArr) {
         console.log('hashtag array: ', hashtagArr);
@@ -41,6 +41,8 @@ var updateFilter = function (hashtag, threshold) {
           })
       }
     );
+  } else if (hashtag =  '') {
+
   } else {
     return getFilter();
   }

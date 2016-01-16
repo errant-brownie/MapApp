@@ -90,12 +90,12 @@ var connect = function (server) {
                         return filterService.updateFilter(filterHashtag());
                       } else {
                         // filter should be an array
-                        console.log('filter service filter variable: ',filterService.getFilter())
+                        // console.log('filter service filter variable: ',filterService.getFilter())
                         return filterService.getFilter();
                       }
                     })
                     .then(function (filter) {
-                      console.log('inside socket service filter promise: ', filter);
+                      // console.log('inside socket service filter promise: ', filter);
                       if (filter.length > 0) {
                         // for each hash tag in filter
                         for (var i = 0; i < filter.length; i++) {
@@ -103,8 +103,8 @@ var connect = function (server) {
                           // itterate over tweet's hashtag array
                           for (var j = 0; j < scrubbedTweetObject.hashtags.length; j++) {
                             // console.log('filter: ', filter[i], ', tweet hashtags: ', scrubbedTweetObject.hashtags);
+                            console.log('hashtags in this message: ', scrubbedTweetObject.hashtags[j].text)
                             if (filter[i].name.toUpperCase() == scrubbedTweetObject.hashtags[j].text.toUpperCase()) {
-
                               // attach strength rating, count, and 'related' hashtag to scrubbed tweet object passed to client
                               scrubbedTweetObject['strength'] = filter[i]['strength'];
                               scrubbedTweetObject['count'] = filter[i]['count'];
@@ -125,10 +125,10 @@ var connect = function (server) {
                       socket.emit("tweet-stream", scrubbedTweetObject);
                     })
                     .catch(function (err) {
-                      console.log('error!!!', err);
+                      // console.log('error!!!', err);
                     })
                   } else {
-                    console.log('no hashtags!')
+                    // console.log('no hashtags!')
                   }
             }
           }
