@@ -5,9 +5,10 @@
       placeholder="Search by hashtag"
       md-selected-item="data.selectedItem" 
       md-search-text="data.searchText" 
+      md-item-text="item.name"
       md-items="item in getMatches(data.searchText)">
     <md-item-template>
-      <span md-highlight-text="data.searchText">{{item.display}}</span>
+      <span md-highlight-text="data.searchText">{{item.name}}</span>
     </md-item-template>
     <md-not-found>
      No matches found.

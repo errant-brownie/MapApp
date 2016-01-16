@@ -5,7 +5,10 @@ angular.module('app.search', [])
 
   $scope.data = {};
   $scope.getMatches = function (partial) {
-    return suggestionsService.getHashtagSuggestions(partial);
+    return suggestionsService.getHashtagSuggestions(partial)
+    .then(function (data) {
+      return data.data;
+    });
   };
 
   $scope.submitSearch = function () {
