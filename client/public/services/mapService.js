@@ -124,6 +124,7 @@ angular.module('app.mapService', [])
           tweetContent.tweetText = data['tweetText'];
           tweetContent.url = data['url'];
           tweetContent.image = data['profileImage'];
+          tweetContent.strength = data['strength'];
 
           // var markerInfoWindow = new google.maps.InfoWindow({
           //    content: tweetContent
