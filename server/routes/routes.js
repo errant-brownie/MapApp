@@ -7,6 +7,8 @@ var UserController = require('../controllers/userController.js');
 var hashtagsController = require('../controllers/hashtagsController.js');
 var passport = require('passport');
 var socketService = require('../service/socketService');
+var filterService = require('../requestHandler/filter');
+
 
 var isLoggedIn = function (req, res, next) {
   // if user is authenticated in the session, carry on
@@ -23,6 +25,7 @@ router.get('/', isLoggedIn, function (req, res, next) {
   res.sendFile(path.join(__dirname, '../../client/views/index.html'));
 });
 
+//-----------------------   Auth  --------------------------
 // Login Route for O-Auth
 router.get('/auth/twitter', passport.authenticate('twitter'));
 
@@ -40,6 +43,12 @@ router.get('/logout', function (req, res) {
   res.redirect('/signup');
 });
 
+router.get('/signup', function (req, res) {
+  res.sendFile(path.join(__dirname, '../../client/views/signup.html'));
+});
+
+//------------------------ REST API --------------------------
+
 // Handle GET request to Twitter API
 // router.get('/api/tweets/:category', twitterApiController.getTweets);
 
@@ -53,10 +62,12 @@ router.put('/api/users/:username', function (req, res) {
   });
 });
 
+// change the hashtag filter
 router.post('/api/hashtag', function (req, res) {
   var hashtag = req.body.hashtag;
-  socketService.filterHashtag(hashtag);
-  res.end();
+  filterService.setHashtag(hashtag);
+  filterService.updateFilter();
+  res.json(filterService.getFilter());
 });
 
 // get hashtag suggestions for auto complete feature
@@ -71,8 +82,20 @@ router.get('/api/hashtag/:tag', function (req, res, next){
   })
 });
 
-router.get('/signup', function (req, res) {
-  res.sendFile(path.join(__dirname, '../../client/views/signup.html'));
+// Ignore list is a list of tags to remove from the filter
+// add a tag to the ignore list.
+router.post('/api/ignore/:tag', function (req, res, next) {
+  filterService.addIgnoreTag(req.param.tag);
+  res.json(filterService.getIgnoreTags());
+});
+// remove a tag from the ignore list
+router.delete('/api/ignore/:tag', function (req, res, next) {
+  filterService.unIgnoreTag(req.param.tag);
+  res.json(filterService.getIgnoreTags());
+});
+// get ignore list
+router.get('/api/ignore', function (req, res, next) {
+  res.json(filterService.getIgnoreTags());
 });
 
 module.exports = router;

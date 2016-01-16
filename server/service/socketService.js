@@ -87,7 +87,7 @@ var connect = function (server) {
                         count = 0;
                         // returned object will be of the following format...
                           // { name: 'abc', strength: .02923, count: 1234 }
-                        return filterService.updateFilter(filterHashtag());
+                        return filterService.updateFilter();
                       } else {
                         // filter should be an array
                         // console.log('filter service filter variable: ',filterService.getFilter())
