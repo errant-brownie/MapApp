@@ -27,8 +27,9 @@ angular.module('app.search', [])
 
       httpService.filterTweets($scope.data.searchText)
         .then(function (result) {
-          console.log('Related to ' + $scope.data.searchText + ': ', result);
-          tweetMessageService.showRelatedHashtags(mapService.getRelated(result.data))();
+          if (result) {
+            tweetMessageService.showRelatedHashtags(mapService.getRelated(result.data))();
+          }
         });
       
       // heatmap = new google.maps.visualization.HeatmapLayer({

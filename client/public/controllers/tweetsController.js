@@ -38,7 +38,7 @@ angular.module('app.tweets', [])
       $scope.data.show = !$scope.data.show;
       slide();
     }
-
-    tweetMessageService.addListener(showMessage);
+    
+    tweetMessageService.addListener(showMessage, 'showMessage');
   }
 ]);
