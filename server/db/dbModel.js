@@ -1,5 +1,5 @@
 var Sequelize = require('sequelize');
-var sequelize = new Sequelize(process.env.ENV_DB || 'freeAssoc', 'root', 'password');
+var sequelize = new Sequelize(process.env.ENV_DB || 'freeassoc', 'postgres', '', { dialect: 'postgres', logging: false });
 
 var User = sequelize.define('User', {
   id: { type: Sequelize.INTEGER, primaryKey: true, autoIncrement: true },
