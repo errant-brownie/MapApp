@@ -19,7 +19,7 @@ angular.module('app.search', [])
         mapService.clearHeat();
         mapService.deleteMarkers();
 
-        httpService.filterTweets($scope.searchField);
+        httpService.filterTweets($scope.data.searchText);
         
         // heatmap = new google.maps.visualization.HeatmapLayer({
         //   radius: 15
