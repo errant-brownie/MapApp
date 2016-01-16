@@ -69,7 +69,7 @@ var connect = function (server) {
                   place: tweetObject['place'],
                   tweetText: tweetObject['text'],
                   tweetTime: tweetObject['created_at'],
-                  //profileImage: splicedProfileImage,
+                  profileImage: tweetObject['user']['profile_image_url'],
                   // retweet_count: tweetObject['retweet_count'],
                   // favorite_count: tweetObject['favorite_count']
                 };
