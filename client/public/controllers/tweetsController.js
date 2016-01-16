@@ -2,7 +2,7 @@
 angular.module('app.tweets', [])
 .controller('tweetsController',[
   '$scope', 
-  'tweetMessageService', 
+  'tweetMessageService',
   function ($scope, tweetMessageService){
     $scope.data = {};
     $scope.data.show = false;

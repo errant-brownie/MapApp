@@ -4,6 +4,7 @@ angular.module('app.search', [])
 .controller('searchController', ['$scope', 'httpService', 'suggestionsService', 'mapService', function ($scope, httpService, suggestionsService, mapService){
 
   $scope.data = {};
+  
   $scope.getMatches = function (partial) {
     return suggestionsService.getHashtagSuggestions(partial)
     .then(function (data) {
@@ -19,7 +20,11 @@ angular.module('app.search', [])
         mapService.clearHeat();
         mapService.deleteMarkers();
 
-        httpService.filterTweets($scope.data.searchText);
+        httpService.filterTweets($scope.data.searchText)
+          .then(function (result) {
+            console.log('Related: ', result);
+            mapService.getRelated(result);
+          });
         
         // heatmap = new google.maps.visualization.HeatmapLayer({
         //   radius: 15
