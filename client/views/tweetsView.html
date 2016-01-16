@@ -10,6 +10,10 @@
     </div>
     <hr>
     <p ng-show="data.show" class="tweet-text ng-hide">{{data.message.tweetText}}</p>
+    <div class="footer">
+      <div class="relation" ng-show="data.show">Relation strength: </div>
+      <div class="hash-strength" ng-show="data.show">{{ data.message.strength.toPrecision(3) }}</div>
+    </div>
   </div>
 
 
