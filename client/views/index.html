@@ -3,6 +3,9 @@
   <head>
     <link rel="stylesheet" href="client/assets/stylesheets/styles.css"></link>
     <link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
+    <!-- angular material style sheet -->
+    <link rel="stylesheet" href="bower_components/angular-material/angular-material.min.css">
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.css' rel='stylesheet' type='text/css'>
   </head>
 
   <body>
@@ -18,7 +21,7 @@
 
 
       <!-- <div ng-controller="rightDiv" class="rightDiv"> -->
-      <div class="rightDiv sidebar" ui-view="rightDiv">RIGHT</div>
+      <!-- <div class="rightDiv sidebar" ui-view="rightDiv">RIGHT</div> -->
     </div>
   </body>
 
@@ -27,6 +30,13 @@
   <script src="bower_components/underscore/underscore.js"></script>
   <!--added animate in case future groups want to us its functionality-->
   <script src="/bower_components/angular-animate/angular-animate.js"></script>
+
+  <!-- angular material -->
+  <script src="bower_components/angular-aria/angular-aria.min.js"></script>
+  <script src="bower_components/angular-messages/angular-messages.min.js"></script>
+  <script src="bower_components/angular-material/angular-material.min.js"></script>
+
+  <!-- this app -->
   <script src="client/app.js"></script>
   <script src="client/public/controllers/signup.js"></script>
   <script src="client/public/controllers/mapsPageController.js"></script>
@@ -34,6 +44,7 @@
   <script src="client/public/services/httpService.js"></script>
   <script src="client/public/services/tweetMessageService.js"></script>
   <script src="client/public/services/mapService.js"></script>
+  <script src="client/public/services/suggestionsService.js"></script>
   <script src="client/public/controllers/tweetsController.js"></script>
   <!-- <script src="client/public/controllers/filterController.js"></script> -->
   <script src="client/public/controllers/searchController.js"></script>

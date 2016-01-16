@@ -9,6 +9,7 @@ var app = angular.module('app', [
   'app.tweetMessageService',
   'ngAnimate', 
   'ui.router',
+  'ngMaterial'
 ])
 
 .config(function ($stateProvider, $urlRouterProvider){

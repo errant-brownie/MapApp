@@ -1,7 +1,13 @@
 //searchController.js
 angular.module('app.search', [])
 
-.controller('searchController', ['$scope', 'httpService', 'mapService', function ($scope, httpService, mapService){
+.controller('searchController', ['$scope', 'httpService', 'suggestionsService', 'mapService', function ($scope, httpService, suggestionsService, mapService){
+
+  $scope.data = {};
+  $scope.getMatches = function (partial) {
+    return suggestionsService.getHashtagSuggestions(partial);
+  };
+
   $scope.submitSearch = function () {
         // deleteMarkers();
          //heatmap.setMap(null);

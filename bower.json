@@ -24,6 +24,7 @@
     "bootstrap": "~3.3.6",
     "animate.css": "https://github.com/daneden/animate.css.git#~3.5.1",
     "angular-animate": "~1.4.8",
-    "underscore": "~1.8.3"
+    "underscore": "~1.8.3",
+    "angular-material": "~1.0.2"
   }
 }
