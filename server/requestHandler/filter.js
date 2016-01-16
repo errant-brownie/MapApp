@@ -15,12 +15,19 @@ var getFilter = function(newFilter) {
 var updateFilter = function (hashtag, threshold) {
   if (hashtag) {
     var threshold = threshold || 0.05;
+    // will return array of hashtags from the database
     HashtagsController.getIdForHashtag(hashtag)
       .then(function (hashtagArr) {
-        console.log('hashtag array: ', hashtagArr);
+        // loop over over all hashtags in the array and pluck the hashtag id's and 
+        return hashtagArr.reduce(function (accum, hashtag) {
+          // push the new objects to the accumulator
+          accum.push({ id: hashtag.id });
+          return accum;
+        }, [])
+      })
+      .then(function (hashtagArr) {
         Engine.getRelatedHashtags(hashtagArr)
           .then(function (relatedHashtags) {
-            console.log('related hashtags: ', relatedHashtags);
             var result = [];
 
             for (var i = 0; i < relatedHashtags.length; i++) {
@@ -35,14 +42,12 @@ var updateFilter = function (hashtag, threshold) {
               }
             }
             getFilter(result);
-
-            console.log('new filter: ', getFilter());
+            // console.log('new filter: ', getFilter());
             return result;
           })
-      }
-    );
+        })
   } else if (hashtag =  '') {
-
+    filter = [];
   } else {
     return getFilter();
   }

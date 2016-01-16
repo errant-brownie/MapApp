@@ -45,16 +45,12 @@ var getHashtags = function (userId) {
 };
 
 var getIdForHashtag = function (hashtag) {
-  return model.Hashtag.findOne({
+  return model.Hashtag.findAll({
     where: {
-      name: hashtag
+      name: {
+        $ilike: hashtag
+      }
     }
-  })
-  .then(function (hashtag) {
-    var hashtagArr = [];
-    hashtagArr.push({ id: hashtag.id });
-    console.log(hashtagArr);
-    return hashtagArr;
   })
 }
 

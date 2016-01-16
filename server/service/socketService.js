@@ -103,7 +103,7 @@ var connect = function (server) {
                           // itterate over tweet's hashtag array
                           for (var j = 0; j < scrubbedTweetObject.hashtags.length; j++) {
                             // console.log('filter: ', filter[i], ', tweet hashtags: ', scrubbedTweetObject.hashtags);
-                            console.log('hashtags in this message: ', scrubbedTweetObject.hashtags[j].text)
+                            // console.log('hashtags in this message: ', scrubbedTweetObject.hashtags[j].text)
                             if (filter[i].name.toUpperCase() == scrubbedTweetObject.hashtags[j].text.toUpperCase()) {
                               // attach strength rating, count, and 'related' hashtag to scrubbed tweet object passed to client
                               scrubbedTweetObject['strength'] = filter[i]['strength'];

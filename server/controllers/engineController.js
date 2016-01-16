@@ -38,7 +38,7 @@ var getRelatedHashtags = function (hashtagList) {
     where: {
       id: hashtagIds
     },
-    include: [model.User]
+    include: [ model.User ]
   })
   // expected input to be array of { hashtags } to the .then block
   .then(function (hashtags) {
