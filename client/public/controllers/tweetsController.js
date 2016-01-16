@@ -2,7 +2,7 @@
 angular.module('app.tweets', [])
 .controller('tweetsController',[
   '$scope', 
-  'tweetMessageService', 
+  'tweetMessageService',
   function ($scope, tweetMessageService){
     $scope.data = {};
     $scope.data.show = false;
@@ -30,7 +30,6 @@ angular.module('app.tweets', [])
     var showMessage = function (message) {
       $scope.data.message = message;
       $scope.data.show = true;
-      console.log(message.image);
       slide();
       $scope.$apply();
     };
@@ -39,7 +38,7 @@ angular.module('app.tweets', [])
       $scope.data.show = !$scope.data.show;
       slide();
     }
-
-    tweetMessageService.addListener(showMessage);
+    
+    tweetMessageService.addListener(showMessage, 'showMessage');
   }
 ]);

@@ -1,6 +1,16 @@
 var model = require('../db/dbModel.js');
 var Promise = require('bluebird');
 
+var hashtagList;
+
+var setHashtagArray = function(hashtagArray) {
+  
+  if (!!hashtagArray) {  
+    hashtagList = hashtagArray;
+  }
+
+  return hashtagList;  
+};
 /*
   The heart of the project...
   The order of operations is as follows:
@@ -93,13 +103,15 @@ var getRelatedHashtags = function (hashtagList) {
       results.push(hashtagCounts[hashtag]);
     }
     
+    setHashtagArray(results);
     console.log('!!!!!!!results: ', results);
     return results;
   })
 };
 
 module.exports = {
-  getRelatedHashtags: getRelatedHashtags
+  getRelatedHashtags: getRelatedHashtags,
+  setHashtagArray: setHashtagArray
 };
 
 // var testItem = [{id: 1}, {id:2}, {id:3}];
