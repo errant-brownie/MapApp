@@ -5,7 +5,6 @@
       placeholder="Search by hashtag"
       md-selected-item="data.selectedItem" 
       md-search-text="data.searchText" 
-      md-item-text="item.name"
       md-items="item in getMatches(data.searchText)">
     <md-item-template>
       <span md-highlight-text="data.searchText">{{item.name}}</span>
@@ -14,5 +13,5 @@
      No matches found.
     </md-not-found>
   </md-autocomplete>
-  <button type="submit" class="search-button">Search</button>
+  <md-button type="submit" class="search-button">Search</md-button>
 </form>
