@@ -177,3 +177,25 @@ hr {
   width: 30px;
   height: 30px;
 }
+
+.footer {
+  display: flex;
+  flex-direction: row;
+  align-self: center;
+}
+
+.relation {
+  font-size: 0.6em;
+  font-weight: bold;
+  font-family: sans-serif;
+  color: #797979;
+  align-self: left;
+  padding: 3px;
+}
+
+.hash-strength {
+  font-size: 0.6em;
+  align-self: right;
+  padding: 3px;
+}
+

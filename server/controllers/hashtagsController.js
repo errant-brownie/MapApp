@@ -71,9 +71,18 @@ var getHashtagsForUsers = function (userIds) {
   })
 }
 
+var completeHashtag = function (partialTag) {
+  return model.Hashtag.findAll({
+    where: {
+      name: {$like: partialTag + '%'}
+    }
+  });
+}
+
 module.exports = {
   getIdForHashtag: getIdForHashtag,
   getHashtags: getHashtags,
   getHashtagsForUsers: getHashtagsForUsers,
-  addHashtag: addHashtag
+  addHashtag: addHashtag,
+  completeHashtag: completeHashtag
 };
