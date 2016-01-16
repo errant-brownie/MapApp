@@ -4,6 +4,7 @@ var router = express.Router();
 var path = require('path');
 var twitterApiController = require('../controllers/twitterApiController.js');
 var UserController = require('../controllers/userController.js');
+var hashtagsController = require('../controllers/hashtagsController.js');
 var passport = require('passport');
 var socketService = require('../service/socketService');
 
@@ -56,7 +57,19 @@ router.post('/api/hashtag', function (req, res) {
   var hashtag = req.body.hashtag;
   socketService.filterHashtag(hashtag);
   res.end();
-})
+});
+
+// get hashtag suggestions for auto complete feature
+router.param('tag', function (req, res, next, tag){
+  req.param.tag = tag;
+  next();
+});
+router.get('/api/hashtag/:tag', function (req, res, next){
+  hashtagsController.completeHashtag(req.param.tag)
+  .then(function (suggestions) {
+    res.json(suggestions);  
+  })
+});
 
 router.get('/signup', function (req, res) {
   res.sendFile(path.join(__dirname, '../../client/views/signup.html'));

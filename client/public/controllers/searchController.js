@@ -1,7 +1,16 @@
 //searchController.js
 angular.module('app.search', [])
 
-.controller('searchController', ['$scope', 'httpService', 'mapService', function ($scope, httpService, mapService){
+.controller('searchController', ['$scope', 'httpService', 'suggestionsService', 'mapService', function ($scope, httpService, suggestionsService, mapService){
+
+  $scope.data = {};
+  $scope.getMatches = function (partial) {
+    return suggestionsService.getHashtagSuggestions(partial)
+    .then(function (data) {
+      return data.data;
+    });
+  };
+
   $scope.submitSearch = function () {
         // deleteMarkers();
          //heatmap.setMap(null);
@@ -17,4 +26,6 @@ angular.module('app.search', [])
         // });
         // heatmap.setMap(window.map);
       };
-}]);
+    }
+  ]
+);

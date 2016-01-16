@@ -3,11 +3,13 @@ var app = angular.module('app', [
   'renderMap',
   'app.tweets',
   'app.mapService',
+  'app.suggestionsService',
   // 'app.filter',
   'app.search',
   'app.tweetMessageService',
   'ngAnimate', 
   'ui.router',
+  'ngMaterial'
 ])
 
 .config(function ($stateProvider, $urlRouterProvider){
